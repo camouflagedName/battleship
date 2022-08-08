@@ -1,0 +1,40 @@
+#root {
+  font-family: helvetica, sans-serif;
+  display: flex;
+  background: blue;
+  align-content: center;
+  justify-content: center;
+}
+
+.mainBox {
+  background: white;
+  border-style: solid;
+  width: 500px;
+  height: 500px;
+  margin: 50px 0px 50px 50px;
+  display: flex;
+  flex-direction: column;
+}
+
+.row {
+  display: flex;
+  width: 500px;
+  height: 100px;
+}
+
+.gridBox {
+  border-style: solid;
+  border-width: medium;
+  width: 98px;
+  height: 98px;
+}
+
+.sideContainer {
+  background: white;
+  border-style: solid;
+  width: 300px;
+  height: 300px;
+  margin: 50px 100px 50px 100px;
+  text-align: center;
+  font-size: 20px;
+}
