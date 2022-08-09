@@ -9,6 +9,8 @@
 //contains 2-5 nums x%5-randomNum
 import { initGrid } from "./utils/initializeGrid.js"
 import { player } from "./utils/playerModel.js"
+import { createContainer, createSidePanelRow, createViewRow, createTitle } from "./utils/sidePanelLayout.js"
+import { addIcon } from "./utils/gameboardLayout.js"
 
 const gameGrid = initGrid()
 
@@ -16,23 +18,27 @@ const player1 = player
 
 const createBoard = () => {
   const root = document.querySelector("#root")
+  const titleRow = createViewRow()
+  const viewRow = createViewRow()
+  const title = createTitle()
+  const attemptsContainer = createContainer("Attempts")
+  const boardContainer = document.createElement("div")
+
+  root.appendChild(titleRow)
+  titleRow.appendChild(title)
+  root.appendChild(viewRow)
 
   //create attempts container
-  const attemptsContainer = document.createElement("div")
-  attemptsContainer.className = "sideContainer"
-  attemptsContainer.id = "attempts"
-  attemptsContainer.innerHTML = "Attempts" + "<br>"
-  root.appendChild(attemptsContainer)
+  viewRow.appendChild(attemptsContainer)
 
   //create grid
-  const boardContainer = document.createElement("div")
   boardContainer.className = "mainBox"
-  root.appendChild(boardContainer)
+  viewRow.appendChild(boardContainer)
 
   for (const row in gameGrid) {
     //console.log(row)
     let rowContainer = document.createElement("div")
-    rowContainer.className = "row"
+    rowContainer.className = "gameboard-row"
     rowContainer.id = row
     boardContainer.appendChild(rowContainer)
     //let random = Math.floor(Math.random() * 24)
@@ -43,19 +49,25 @@ const createBoard = () => {
       gridBox.id = `row${row}-cell${cell}`
 
       gridBox.addEventListener("click", () => {
+        let content = `[${row}, ${cell}]`
+        let containerRowContent = createSidePanelRow(content)
         if (player1.turn) {
           if (gameGrid[row][cell] === false) {
             //mark the cell as a miss
             //add to player.attempts
+            const waterIcon = addIcon("water")
             const attCont = document.querySelector("#attempts")
-            attCont.innerHTML = attCont.innerHTML + `[${row}, ${cell}]` + '<br>'
+            attCont.appendChild(containerRowContent)
             gridBox.style.backgroundColor = "red"
+            gridBox.appendChild(waterIcon)
           }
           else {
             //add to player.hits
+            const shipIcon = addIcon("sailing")
             const hitsCont = document.querySelector("#hits")
-            hitsCont.innerHTML = hitsCont.innerHTML + `[${row}, ${cell}]` + '<br>'
+            hitsCont.appendChild(containerRowContent)
             gridBox.style.backgroundColor = "green"
+            gridBox.appendChild(shipIcon)
 
             //if player.hits === ?
             //end game
@@ -68,11 +80,8 @@ const createBoard = () => {
     }
   }
   //create attempts container
-  const hitsContainer = document.createElement("div")
-  hitsContainer.className = "sideContainer"
-  hitsContainer.id = "hits"
-  hitsContainer.innerHTML = "Hits" + "<br>"
-  root.appendChild(hitsContainer)
+  const hitsContainer = createContainer("Hits")
+  viewRow.appendChild(hitsContainer)
 }
 
 createBoard()
