@@ -16,7 +16,7 @@ const randomizer = () => {
   const horizontal = () => {
     const loopLength = randNumGen(2, 5)
     const gridNum = randomHorzNum(loopLength)
-    for (x = 0; x < loopLength; x++) {
+    for (let x = 0; x < loopLength; x++) {
       arrayOfRandomness.push(gridNum + x)
     }
   }
@@ -24,7 +24,7 @@ const randomizer = () => {
   const vertical = () => {
     const loopLength = randNumGen(2, 5)
     const gridNum = randomVertNum(loopLength)
-    for (x = 0; x < loopLength; x++) {
+    for (let x = 0; x < loopLength; x++) {
       arrayOfRandomness.push(gridNum + x * 5)
       //console.log(gridNum, x, loopLength)
     }
