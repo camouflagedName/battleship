@@ -4,7 +4,7 @@ A Pen created on CodePen.io. Original URL: [https://codepen.io/camouflagedname/p
 
 ## About
 
-This was built using vanilla JS and CSS. It is currently unfinished. This can be run entirely in a web browser, with the only limiation being on outdated web browsers.
+This was built using vanilla JS and CSS. It is currently unfinished. This can be run entirely in a web browser, with the only limitation being on outdated web browsers.
 
 ### Current Needs
 - end game
